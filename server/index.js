@@ -4,18 +4,15 @@ import cors from "cors";
 import mongoose from "mongoose";
 import UserRoutes from "./routes/User.js";
 
-// Load environment variables
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 app.use(express.json({ limit: "50mb" }));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); // for form data
 
-// Routes
 app.use("/api/user/", UserRoutes);
-
-// Error handler middleware
+// error handler
 app.use((err, req, res, next) => {
   const status = err.status || 500;
   const message = err.message || "Something went wrong";
@@ -26,36 +23,29 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Default route
 app.get("/", async (req, res) => {
   res.status(200).json({
     message: "Hello developers from GFG",
   });
 });
 
-// MongoDB connection
-const connectDB = async () => {
-  try {
-    mongoose.set("strictQuery", true);
-
-    console.log("Connecting to MongoDB...");
-    await mongoose.connect(process.env.MONGODB_URL);
-    console.log("Connected to MongoDB");
-  } catch (error) {
-    console.error("Failed to connect to MongoDB");
-    console.error(error);
-    process.exit(1); // Exit process with failure
-  }
+const connectDB = () => {
+  mongoose.set("strictQuery", true);
+  mongoose
+    .connect(process.env.MONGODB_URL)
+    .then(() => console.log("Connected to Mongo DB"))
+    .catch((err) => {
+      console.error("failed to connect with mongo");
+      console.error(err);
+    });
 };
 
-// Start server
 const startServer = async () => {
   try {
-    await connectDB();
+    connectDB();
     app.listen(8080, () => console.log("Server started on port 8080"));
   } catch (error) {
-    console.error("Failed to start the server");
-    console.error(error);
+    console.log(error);
   }
 };
 

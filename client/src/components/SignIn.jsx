@@ -46,12 +46,13 @@ const SignIn = () => {
       await UserSignIn({ email, password })
         .then((res) => {
           dispatch(loginSuccess(res.data));
+          console.log(res.data);
           alert("Login Success");
           setLoading(false);
           setButtonDisabled(false);
         })
         .catch((err) => {
-          alert(err.response.data.message);
+        //   alert(err.response.data.message);
           setLoading(false);
           setButtonDisabled(false);
         });

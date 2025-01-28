@@ -20,6 +20,7 @@ const Nav = styled.div`
   color: white;
   border-bottom: 1px solid ${({ theme }) => theme.text_secondary + 20};
 `;
+
 const NavContainer = styled.div`
   width: 100%;
   max-width: 1400px;
@@ -30,6 +31,7 @@ const NavContainer = styled.div`
   justify-content: space-between;
   font-size: 1rem;
 `;
+
 const NavLogo = styled(LinkR)`
   width: 100%;
   display: flex;
@@ -41,9 +43,11 @@ const NavLogo = styled(LinkR)`
   text-decoration: none;
   color: ${({ theme }) => theme.black};
 `;
+
 const Logo = styled.img`
   height: 42px;
 `;
+
 const Mobileicon = styled.div`
   color: ${({ theme }) => theme.text_primary};
   display: none;
@@ -66,6 +70,7 @@ const NavItems = styled.ul`
     display: none;
   }
 `;
+
 const Navlink = styled(NavLink)`
   display: flex;
   align-items: center;
@@ -93,6 +98,7 @@ const UserContainer = styled.div`
   padding: 0 6px;
   color: ${({ theme }) => theme.primary};
 `;
+
 const TextButton = styled.div`
   text-align: end;
   color: ${({ theme }) => theme.secondary};
@@ -119,21 +125,21 @@ const MobileMenu = styled.ul`
   top: 80px;
   right: 0;
   transition: all 0.6s ease-in-out;
-  transform: ${({ isOpen }) =>
-    isOpen ? "translateY(0)" : "translateY(-100%)"};
   border-radius: 0 0 20px 20px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-  opacity: ${({ isOpen }) => (isOpen ? "100%" : "0")};
-  z-index: ${({ isOpen }) => (isOpen ? "1000" : "-1000")};
+  transform: ${({ $isOpen }) => ($isOpen ? "translateY(0)" : "translateY(-100%)")};
+  opacity: ${({ $isOpen }) => ($isOpen ? "100%" : "0")};
+  z-index: ${({ $isOpen }) => ($isOpen ? "1000" : "-1000")};
 `;
 
 const Navbar = ({ currentUser }) => {
   const dispatch = useDispatch();
-  const [isOpen, setisOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <Nav>
       <NavContainer>
-        <Mobileicon onClick={() => setisOpen(!isOpen)}>
+        <Mobileicon onClick={() => setIsOpen(!isOpen)}>
           <MenuRounded sx={{ color: "inherit" }} />
         </Mobileicon>
         <NavLogo to="/">
@@ -141,7 +147,7 @@ const Navbar = ({ currentUser }) => {
           Fittrack
         </NavLogo>
 
-        <MobileMenu isOpen={isOpen}>
+        <MobileMenu $isOpen={isOpen}>
           <Navlink to="/">Dashboard</Navlink>
           <Navlink to="/workouts">Workouts</Navlink>
           <Navlink to="/tutorials">Tutorials</Navlink>
