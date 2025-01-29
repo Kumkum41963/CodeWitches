@@ -1,0 +1,115 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+.check-posture-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.heading {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Main Container: Divided into two parts */
+.main-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+/* Left: Live Camera Feed */
+.camera-feed-container {
+  width: 48%; /* Fixed width */
+  aspect-ratio: 16 / 9; /* Automatically set the height based on the 16:9 ratio */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border: 2px solid #000;
+  position: relative;
+  background-color: black; /* Set background color to black */
+  overflow: hidden; /* Ensure no overflow */
+}
+
+/* Camera feed (visible when camera is on) */
+.camera-feed {
+  width: 100%; /* Fit the webcam feed to the container width */
+  height: 100%; /* Fit the webcam feed to the container height */
+  object-fit: cover; /* Make sure the feed covers the area without distortion */
+  position: absolute;
+}
+
+/* Black background when the camera is off */
+.black-screen {
+  background-color: black; /* Ensures black screen is shown */
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Camera view, applied when the camera is on */
+.camera-view {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Right: Processed Image Grid */
+.processed-grid {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.processed-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.processed-image {
+  height: 100px;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+/* Button Container */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* Buttons */
+.toggle-button, .capture-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.toggle-button {
+  background-color: #f44336;
+}
+
+.capture-button {
+  background-color: #008CBA;
+}

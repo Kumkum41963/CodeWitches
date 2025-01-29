@@ -153,6 +153,7 @@ const Navbar = ({ currentUser }) => {
           <Navlink to="/tutorials">Tutorials</Navlink>
           <Navlink to="/blogs">Blogs</Navlink>
           <Navlink to="/contact">Contact</Navlink>
+          <Navlink to="/posturedetection">Posture Detection</Navlink>
         </MobileMenu>
 
         <NavItems>
@@ -162,6 +163,7 @@ const Navbar = ({ currentUser }) => {
           <Navlink to="/blogs">Blogs</Navlink>
           <Navlink to="/contact">Contact</Navlink>
           <Navlink to="/chatbot">Chatbot</Navlink>
+          <Navlink to="/posturedetection">Posture Detection</Navlink>
         </NavItems>
 
         <UserContainer>
